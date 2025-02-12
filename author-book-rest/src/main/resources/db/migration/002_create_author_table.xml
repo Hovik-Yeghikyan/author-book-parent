@@ -1,0 +1,25 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="002_create_author_table" author="hyeghikyan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="author"/>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE `author`
+            (
+                `id`               int          NOT NULL AUTO_INCREMENT,
+                `name`             varchar(100) NOT NULL,
+                `surname`          varchar(100) NOT NULL,
+                `phone`            varchar(100) DEFAULT NULL,
+                `date_of_birthday` date         DEFAULT NULL,
+                `gender`           enum('MALE','FEMALE') DEFAULT NULL,
+                PRIMARY KEY (`id`)
+            )
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

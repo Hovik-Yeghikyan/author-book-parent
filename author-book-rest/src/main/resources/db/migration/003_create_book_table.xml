@@ -1,0 +1,30 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="003_create_book_table" author="hyeghikyan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="book"/>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE `book` (
+                                    `id` int NOT NULL AUTO_INCREMENT,
+                                    `title` varchar(100) NOT NULL,
+                                    `price` double NOT NULL,
+                                    `qty` int NOT NULL,
+                                    `author_id` int DEFAULT NULL,
+                                    `created_at` datetime NOT NULL,
+                                    `user_id` int DEFAULT NULL,
+                                    `image_name` varchar(255) DEFAULT NULL,
+                                    PRIMARY KEY (`id`),
+                                    KEY `book_author_FK` (`author_id`),
+                                    KEY `book_user_FK` (`user_id`),
+                                    CONSTRAINT `book_author_FK` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`),
+                                    CONSTRAINT `book_user_FK` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+            )
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
