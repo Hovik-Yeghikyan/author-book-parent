@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: author-book-rest
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/author_book
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+
+  # jpa:
+  #   hibernate:
+  #     ddl-auto: update
+
+  liquibase:
+    change-log: classpath:/db/changelog.xml
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: --------------
+    password: ----------
+    properties:
+       mail.smtp.auth: true
+       mail.smtp.starttls.enable: true
+
+server:
+  port: 8081
+
+jwt:
+  secret: YXNkZmYkIyNzZFNEU0RBQVNERksjQEBkc2ZqZGZrZHNqQEAjZHNmZ2ZnZmdeXiYmWipeJSQkI2RzZHMkIyVzZDQ1MDk5KUkjJCg5V0ZTSUo=
+  expiration: 600000
