@@ -18,5 +18,7 @@ public class BookDto {
     private double price;
     private AuthorDto author;
     private Date createdAt;
-
+    private double priceUSD;
+    private double priceRUB;
+    private double priceBTC;
 }

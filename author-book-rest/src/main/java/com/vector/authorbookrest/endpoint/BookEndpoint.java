@@ -28,4 +28,5 @@ public class BookEndpoint {
 
         return ResponseEntity.ok(bookService.save(saveBookRequest));
     }
+
 }

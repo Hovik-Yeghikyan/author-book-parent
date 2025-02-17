@@ -67,5 +67,8 @@ public class AuthorServiceImpl implements AuthorService {
         return authorRepository.findByPhone(phone);
     }
 
-
+    @Override
+    public long countOfAuthors() {
+        return authorRepository.count();
+    }
 }

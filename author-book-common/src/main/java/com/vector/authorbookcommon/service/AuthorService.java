@@ -25,4 +25,6 @@ public interface AuthorService {
 
     Optional<Author> findByPhone(String phone);
 
+    long countOfAuthors();
+
 }
