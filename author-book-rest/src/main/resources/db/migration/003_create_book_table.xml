@@ -8,23 +8,52 @@
                 <tableExists tableName="book"/>
             </not>
         </preConditions>
-        <sql>
-            CREATE TABLE `book` (
-                                    `id` int NOT NULL AUTO_INCREMENT,
-                                    `title` varchar(100) NOT NULL,
-                                    `price` double NOT NULL,
-                                    `qty` int NOT NULL,
-                                    `author_id` int DEFAULT NULL,
-                                    `created_at` datetime NOT NULL,
-                                    `user_id` int DEFAULT NULL,
-                                    `image_name` varchar(255) DEFAULT NULL,
-                                    PRIMARY KEY (`id`),
-                                    KEY `book_author_FK` (`author_id`),
-                                    KEY `book_user_FK` (`user_id`),
-                                    CONSTRAINT `book_author_FK` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`),
-                                    CONSTRAINT `book_user_FK` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-            )
-        </sql>
+
+        <createTable tableName="book">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="qty" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="image_name" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="book"
+                baseColumnNames="author_id"
+                constraintName="book_author_FK"
+                referencedTableName="author"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="book"
+                baseColumnNames="user_id"
+                constraintName="book_user_FK"
+                referencedTableName="user"
+                referencedColumnNames="id"/>
+
+
+        <rollback>
+            <dropTable tableName="book"/>
+        </rollback>
     </changeSet>
 
 </databaseChangeLog>

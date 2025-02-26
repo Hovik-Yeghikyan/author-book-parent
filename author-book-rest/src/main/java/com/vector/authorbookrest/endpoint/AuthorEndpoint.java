@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class AuthorEndpoint {
 
     @SecurityRequirement(name = "bearerAuth")
     @GetMapping(value = "/authors")
-    public ResponseEntity<List<AuthorDto>> getAll(@AuthenticationPrincipal CurrentUser currentUser) {
+    public ResponseEntity<List<AuthorDto>> getAll(@AuthenticationPrincipal UserDetails currentUser) {
         log.info("request from {} user", currentUser.getUsername());
         return ResponseEntity.ok(authorService.findAll());
     }

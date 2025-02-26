@@ -8,18 +8,31 @@
                 <tableExists tableName="author"/>
             </not>
         </preConditions>
-        <sql>
-            CREATE TABLE `author`
-            (
-                `id`               int          NOT NULL AUTO_INCREMENT,
-                `name`             varchar(100) NOT NULL,
-                `surname`          varchar(100) NOT NULL,
-                `phone`            varchar(100) DEFAULT NULL,
-                `date_of_birthday` date         DEFAULT NULL,
-                `gender`           enum('MALE','FEMALE') DEFAULT NULL,
-                PRIMARY KEY (`id`)
-            )
-        </sql>
+
+        <createTable tableName="author">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_of_birthday" type="date">
+                <constraints nullable="true"/>
+            </column>
+            <column name="gender" type="ENUM('MALE', 'FEMALE')">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="author"/>
+        </rollback>
     </changeSet>
 
 </databaseChangeLog>

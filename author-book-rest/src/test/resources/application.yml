@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: author-book-rest-test
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    hikari:
+      maximum-pool-size: 1
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  liquibase:
+    enabled: false
+
+  mail:
+    host: localhost
+    port: 1025
+    username: test
+    password: test
+    properties:
+      mail.smtp.auth: false
+      mail.smtp.starttls.enable: false
+
+server:
+  port: 0
+
+jwt:
+  secret: YXNkZmYkIyNzZFNEU0RBQVNERksjQEBkc2ZqZGZrZHNqQEAjZHNmZ2ZnZmdeXiYmWipeJSQkI2RzZHMkIyVzZDQ1MDk5KUkjJCg5V0ZTSUo=
+  expiration: 600000
