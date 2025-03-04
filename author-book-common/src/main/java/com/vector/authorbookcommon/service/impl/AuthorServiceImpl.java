@@ -71,4 +71,6 @@ public class AuthorServiceImpl implements AuthorService {
     public long countOfAuthors() {
         return authorRepository.count();
     }
+
+
 }

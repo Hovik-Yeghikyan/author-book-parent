@@ -3,6 +3,7 @@ package com.vector.authorbookrest.endpoint;
 import com.vector.authorbookcommon.dto.AuthorDto;
 import com.vector.authorbookcommon.dto.SaveAuthorRequest;
 import com.vector.authorbookcommon.service.AuthorService;
+import com.vector.authorbookcommon.service.TestService;
 import com.vector.authorbookrest.security.CurrentUser;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +22,14 @@ import java.util.List;
 public class AuthorEndpoint {
 
     private final AuthorService authorService;
+    private final TestService testService;
 
 
     @SecurityRequirement(name = "bearerAuth")
     @GetMapping(value = "/authors")
     public ResponseEntity<List<AuthorDto>> getAll(@AuthenticationPrincipal UserDetails currentUser) {
         log.info("request from {} user", currentUser.getUsername());
+        testService.test();
         return ResponseEntity.ok(authorService.findAll());
     }
 
